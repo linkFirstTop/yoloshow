@@ -1,0 +1,12 @@
+{
+  "@@locale": "zh",
+  "login": "登录 / 注册",
+  "@login": {
+    "description": "登录按钮文本"
+  },
+  "username": "用户名",
+  "password": "密码",
+  "termsOfService": "服务条款",
+  "privacyPolicy": "隐私政策",
+  "orLoginWith": "第三方账号登录"
+}

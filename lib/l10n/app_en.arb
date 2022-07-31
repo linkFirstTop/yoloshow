@@ -1,0 +1,12 @@
+{
+  "@@locale": "en",
+  "login": "Log in / Sing up ",
+  "@login": {
+    "description": "login button"
+  },
+  "username": "Username",
+  "password": "Password",
+  "termsOfService": "TERMS OF SERVICE",
+  "privacyPolicy": "PRIVACY POLICY",
+  "orLoginWith": "or log in with"
+}
