@@ -27,7 +27,7 @@ const appLocals = <LocalEnum, Locale>{
 };
 
 ///当前APP的国际化配置
-final local = StateProvider<Locale>((ref) => appLocals[LocalEnum.zhHant]!);
+final local = StateProvider<Locale>((ref) => appLocals[LocalEnum.zh]!);
 
 ///main函数启动
 void main() {
