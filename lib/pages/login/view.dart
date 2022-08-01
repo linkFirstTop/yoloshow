@@ -1,7 +1,11 @@
+import 'package:dd_js_util/common/circle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yoloshow/tools/constant.dart';
 import 'package:yoloshow/tools/expand_util.dart';
+import 'package:yoloshow/wigdet/bg.dart';
+
+import '../../wigdet/h_btn.dart';
 
 ///登录页面
 class LoginView extends StatelessWidget {
@@ -12,7 +16,7 @@ class LoginView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(
-        children: [_buildBg(context), _buildLogo(), _buildForm(context)],
+        children: [const Bg(bg: 'img'), _buildLogo(), _buildForm(context)],
       ),
     );
   }
@@ -35,29 +39,6 @@ class LoginView extends StatelessWidget {
             width: 100,
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildBg(BuildContext context) {
-    return Positioned(
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      child: ShaderMask(
-        shaderCallback: (Rect bounds) {
-          return const LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color.fromARGB(0, 0, 0, 0), Color(0xff000000)],
-          ).createShader(bounds);
-        },
-        blendMode: BlendMode.colorBurn,
-        child: Image.asset(
-          'assets/bg/img.png',
-          fit: BoxFit.cover,
-        ),
       ),
     );
   }
@@ -114,23 +95,14 @@ class LoginView extends StatelessWidget {
   }
 
   Widget _buildButton(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      alignment: Alignment.center,
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-            colors: [Color(0xffEC2A83), Color(0xff871CF4)],
-          ),
-          borderRadius: BorderRadius.circular(100),
-          boxShadow: const [BoxShadow(color: Colors.purple, spreadRadius: 1, offset: Offset(1, 1), blurRadius: 10)]),
-      child: Text(
-        context.l10n.login,
-        style: const TextStyle(color: Colors.white),
-      ),
-    );
+    return DefaultButton(
+      child: [
+        Text(
+          context.l10n.login,
+          style: const TextStyle(color: Colors.white),
+        )
+      ],
+    ).width(double.infinity);
   }
 
   Widget _buildLoginWith(BuildContext context) {

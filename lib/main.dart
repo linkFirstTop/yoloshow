@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:yoloshow/common/theme.dart';
+import 'package:yoloshow/pages/login/view.dart';
+import 'package:yoloshow/pages/tag/view.dart';
 
 import 'pages/home.dart';
 
@@ -47,9 +50,9 @@ class MyApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: appLocals.values.toList(),
-      theme: ThemeData(primarySwatch: Colors.purple, useMaterial3: true),
+      theme: AppTheme.defaultTheme,
       locale: ref.watch(local),
-      home: const HomePage(),
+      home: const SelectTagPage(),
     );
   }
 }

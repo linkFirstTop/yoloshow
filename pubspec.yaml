@@ -18,6 +18,8 @@ dependencies:
   flutter_svg: ^1.1.1+1
   riverpod: ^1.0.3
   hooks_riverpod: ^1.0.4
+  dd_js_util:
+    path: ../../../ldd/dd_js_util
 
 dev_dependencies:
   flutter_test:

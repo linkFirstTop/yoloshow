@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yoloshow/pages/tag/view.dart';
 
 import 'login/view.dart';
 
@@ -19,8 +20,7 @@ class HomePageState extends ConsumerState {
   @override
   Widget build(BuildContext context) {
     Locale myLocale = Localizations.localeOf(context);
-    print(myLocale);
-    return const LoginView();
+    return const SelectTagPage();
   }
 
 }
