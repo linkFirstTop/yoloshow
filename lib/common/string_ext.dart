@@ -5,4 +5,5 @@ import 'package:flutter_svg/flutter_svg.dart';
 extension StringCommonExt on String {
   String get svgAssetsPath => "assets/svgs/$this"'.svg';
   Widget get svg => SvgPicture.asset(this);
+  Widget  svgWithColor(Color color)=>SvgPicture.asset(this,color:color);
 }

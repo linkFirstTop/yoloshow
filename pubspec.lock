@@ -15,6 +15,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.2"
+  avatar_stack:
+    dependency: "direct main"
+    description:
+      name: avatar_stack
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.2"
   boolean_selector:
     dependency: transitive
     description:
@@ -128,12 +135,12 @@ packages:
     source: hosted
     version: "4.0.6"
   easy_refresh:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: easy_refresh
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.3+1"
+    version: "3.0.4"
   extended_image:
     dependency: transitive
     description:
@@ -518,6 +525,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.0"
+  persistent_bottom_nav_bar:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: e4f25389490d32340c74dfb661be48c4976cb580
+      url: "https://github.com/joehenrique7/PersistentBottomNavBar"
+    source: git
+    version: "4.0.2"
   petitparser:
     dependency: transitive
     description:

@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yoloshow/common/string_ext.dart';
+import 'package:yoloshow/pages/home.dart';
 import 'package:yoloshow/wigdet/bg.dart';
 import 'package:yoloshow/wigdet/h_btn.dart';
 
@@ -67,7 +68,9 @@ class SelectTagPage extends ConsumerWidget {
                   ),
                   6.w,
                   'go'.svgAssetsPath.svg
-                ])
+                ],onTap: (){
+                  context.navToWidget(to: const HomePage());
+                },)
               ],
             ).mt(context.paddingTop + kToolbarHeight),
           ),

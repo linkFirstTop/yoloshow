@@ -1,4 +1,5 @@
 import 'package:dd_js_util/common/circle.dart';
+import 'package:dd_js_util/ext/context.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yoloshow/tools/constant.dart';
@@ -6,6 +7,7 @@ import 'package:yoloshow/tools/expand_util.dart';
 import 'package:yoloshow/wigdet/bg.dart';
 
 import '../../wigdet/h_btn.dart';
+import '../tag/view.dart';
 
 ///登录页面
 class LoginView extends StatelessWidget {
@@ -15,6 +17,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [const Bg(bg: 'img'), _buildLogo(), _buildForm(context)],
       ),
@@ -25,7 +28,7 @@ class LoginView extends StatelessWidget {
     return Positioned(
       left: 0,
       right: 0,
-      top: 220,
+      top: 180,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,7 +62,7 @@ class LoginView extends StatelessWidget {
     return Positioned(
         left: 50,
         right: 50,
-        top: 332 + 100,
+        top: 332 + 60,
         child: Column(
           children: [
             _buildTextFile(context.l10n.username),
@@ -102,6 +105,7 @@ class LoginView extends StatelessWidget {
           style: const TextStyle(color: Colors.white),
         )
       ],
+      onTap: ()=>context.navToWidget(to: SelectTagPage()),
     ).width(double.infinity);
   }
 
