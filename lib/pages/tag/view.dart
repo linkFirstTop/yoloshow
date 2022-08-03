@@ -23,12 +23,12 @@ class SelectTagPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: Stack(
-        children: [
-          const Bg(bg: 'tag_bg'),
-          SingleChildScrollView(
+    return Stack(
+      children: [
+        const Bg(bg: 'tag_bg'),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          body: SingleChildScrollView(
             padding: const EdgeInsets.all(12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,8 +74,8 @@ class SelectTagPage extends ConsumerWidget {
               ],
             ).mt(context.paddingTop + kToolbarHeight),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

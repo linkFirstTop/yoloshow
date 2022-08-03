@@ -114,7 +114,7 @@ class LoginView extends StatelessWidget {
           style: const TextStyle(color: Colors.white),
         )
       ],
-      onTap: () => context.navToWidget(to: SelectTagPage()),
+      onTap: () => context.navToWidget(to: const SelectTagPage()),
     ).width(double.infinity);
   }
 
