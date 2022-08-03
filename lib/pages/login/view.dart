@@ -1,6 +1,8 @@
 import 'package:dd_js_util/common/circle.dart';
 import 'package:dd_js_util/ext/context.dart';
+import 'package:dd_js_util/ext/widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:yoloshow/tools/constant.dart';
 import 'package:yoloshow/tools/expand_util.dart';
@@ -15,35 +17,36 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: [const Bg(bg: 'img'), _buildLogo(), _buildForm(context)],
-      ),
-    );
+    return Stack(
+      children: [
+        const Bg(bg: 'img'),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          body: SingleChildScrollView(
+            child: Column(
+              children: [_buildLogo(), _buildForm(context)],
+            ),
+          ),
+        ),
+      ],
+    ).editPage;
   }
 
   Widget _buildLogo() {
-    return Positioned(
-      left: 0,
-      right: 0,
-      top: 180,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SvgPicture.asset(
-            'assets/svgs/logo.svg',
-            width: 220,
-          ),
-          SvgPicture.asset(
-            'assets/svgs/mini_logo.svg',
-            width: 100,
-          ),
-        ],
-      ),
-    );
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        SvgPicture.asset(
+          'assets/svgs/logo.svg',
+          width: 205.w,
+        ),
+        SvgPicture.asset(
+          'assets/svgs/mini_logo.svg',
+          width: 51.w,
+        ),
+      ],
+    ).mt(47.h + 175.h);
   }
 
   Widget _buildTextFile(String hintText) {
@@ -59,23 +62,28 @@ class LoginView extends StatelessWidget {
   }
 
   Widget _buildForm(BuildContext context) {
-    return Positioned(
-        left: 50,
-        right: 50,
-        top: 332 + 60,
-        child: Column(
-          children: [
-            _buildTextFile(context.l10n.username),
-            Gap.v(21),
-            _buildTextFile(context.l10n.password),
-            Gap.v(45),
-            _buildActions(context),
-            Gap.v(12),
-            _buildButton(context),
-            Gap.v(12),
-            _buildLoginWith(context)
-          ],
-        ));
+    return Column(
+      children: [
+        _buildTextFile(context.l10n.username).marginOnly(
+          left: 44.w,
+          right: 44.w
+        ),
+        Gap.v(18.h),
+        _buildTextFile(context.l10n.password).marginOnly(
+            left: 44.w,
+            right: 44.w
+        ),
+        Gap.v(51.h),
+        _buildActions(context),
+        Gap.v(16.h),
+        _buildButton(context).marginOnly(
+            left: 44.w,
+            right: 44.w
+        ),
+        Gap.v(18.h),
+        _buildLoginWith(context)
+      ],
+    ).mt(126.h);
   }
 
   Widget _buildActions(BuildContext context) {
