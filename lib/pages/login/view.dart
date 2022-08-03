@@ -23,6 +23,7 @@ class LoginView extends StatelessWidget {
         Scaffold(
           backgroundColor: Colors.transparent,
           body: SingleChildScrollView(
+            physics: const ClampingScrollPhysics(),
             child: Column(
               children: [_buildLogo(), _buildForm(context)],
             ),
