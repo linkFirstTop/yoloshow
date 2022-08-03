@@ -22,11 +22,8 @@ class LoginView extends StatelessWidget {
         const Bg(bg: 'img'),
         Scaffold(
           backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            physics: const ClampingScrollPhysics(),
-            child: Column(
-              children: [_buildLogo(), _buildForm(context)],
-            ),
+          body: Stack(
+            children: [_buildLogo(), _buildForm(context)],
           ),
         ),
       ],
@@ -34,20 +31,25 @@ class LoginView extends StatelessWidget {
   }
 
   Widget _buildLogo() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SvgPicture.asset(
-          'assets/svgs/logo.svg',
-          width: 205.w,
-        ),
-        SvgPicture.asset(
-          'assets/svgs/mini_logo.svg',
-          width: 51.w,
-        ),
-      ],
-    ).mt(47.h + 175.h);
+    return Positioned(
+      left: 0,
+      right: 0,
+      bottom: 501.h,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            'assets/svgs/logo.svg',
+            width: 205.w,
+          ),
+          SvgPicture.asset(
+            'assets/svgs/mini_logo.svg',
+            width: 51.w,
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _buildTextFile(String hintText) {
@@ -63,28 +65,24 @@ class LoginView extends StatelessWidget {
   }
 
   Widget _buildForm(BuildContext context) {
-    return Column(
-      children: [
-        _buildTextFile(context.l10n.username).marginOnly(
-          left: 44.w,
-          right: 44.w
-        ),
-        Gap.v(18.h),
-        _buildTextFile(context.l10n.password).marginOnly(
-            left: 44.w,
-            right: 44.w
-        ),
-        Gap.v(51.h),
-        _buildActions(context),
-        Gap.v(16.h),
-        _buildButton(context).marginOnly(
-            left: 44.w,
-            right: 44.w
-        ),
-        Gap.v(18.h),
-        _buildLoginWith(context)
-      ],
-    ).mt(126.h);
+    return Positioned(
+      left: 0,
+      right: 0,
+      bottom: 44.6.h,
+      child: Column(
+        children: [
+          _buildTextFile(context.l10n.username).marginOnly(left: 44.w, right: 44.w),
+          Gap.v(18.h),
+          _buildTextFile(context.l10n.password).marginOnly(left: 44.w, right: 44.w),
+          Gap.v(51.h),
+          _buildActions(context),
+          Gap.v(16.h),
+          _buildButton(context).marginOnly(left: 44.w, right: 44.w),
+          Gap.v(18.h),
+          _buildLoginWith(context)
+        ],
+      ),
+    );
   }
 
   Widget _buildActions(BuildContext context) {

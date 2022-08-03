@@ -43,7 +43,6 @@ class SelectTagPage extends ConsumerWidget {
                   style: context.kTextTheme.labelMedium,
                 ),
                 27.h,
-                //标签列表
                 ref.watch(_tags).when(
                     data: (tags) {
                       return Wrap(
@@ -61,16 +60,19 @@ class SelectTagPage extends ConsumerWidget {
                     loading: () => const CupertinoActivityIndicator()),
 
                 161.h,
-                DefaultButton(child: [
-                  const Text(
-                    'Here We',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  6.w,
-                  'go'.svgAssetsPath.svg
-                ],onTap: (){
-                  context.navToWidget(to: const HomePage());
-                },)
+                DefaultButton(
+                  child: [
+                    const Text(
+                      'Here We',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    6.w,
+                    'go'.svgAssetsPath.svg
+                  ],
+                  onTap: () {
+                    context.navToWidget(to: const HomePage());
+                  },
+                )
               ],
             ).mt(context.paddingTop + kToolbarHeight),
           ),
