@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:yoloshow/common/theme.dart';
@@ -40,19 +41,26 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp(
-      title: 'YoloShow',
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: appLocals.values.toList(),
-      theme: AppTheme.defaultTheme,
-      locale: ref.watch(local),
-      home: LoginView(),
+    return ScreenUtilInit(
+      designSize: const Size(390, 860),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context,child) {
+        return MaterialApp(
+          title: 'YoloShow',
+          debugShowCheckedModeBanner: false,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: appLocals.values.toList(),
+          theme: AppTheme.defaultTheme,
+          locale: ref.watch(local),
+          home: const LoginView(),
+        );
+      }
     );
   }
 }

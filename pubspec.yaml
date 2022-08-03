@@ -14,16 +14,17 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.5
   flutter_svg: ^1.1.1+1
   riverpod: ^1.0.3
   hooks_riverpod: ^1.0.4
-  easy_refresh: ^3.0.4
+  easy_refresh: ^3.0.4+1
   avatar_stack: ^1.1.2
   persistent_bottom_nav_bar:
     git:
       url: https://github.com/joehenrique7/PersistentBottomNavBar
-  dd_js_util: any
+  dd_js_util: ^0.3.7
+  flutter_screenutil: ^5.5.3+2
 
 dev_dependencies:
   flutter_test:
