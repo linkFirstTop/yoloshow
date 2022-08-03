@@ -118,37 +118,37 @@ class LoginView extends StatelessWidget {
   }
 
   Widget _buildLoginWith(BuildContext context) {
+    final iconSize = 24.w;
     return Column(
       children: [
-        Gap.v(20),
         Text(
           context.l10n.orLoginWith,
           style: const TextStyle(color: Colors.grey),
         ),
-        Gap.v(20),
+        Gap.v(32.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
               'assets/svgs/facebook.svg',
-              width: 20,
-              height: 20,
+              width: iconSize,
+              height: iconSize,
               color: Colors.white,
             ),
-            Gap.h(50),
+            Gap.h(57.w),
             Image.asset(
               'assets/bg/tt.png',
-              width: 20,
-              height: 20,
+              width: iconSize,
+              height: iconSize,
             ),
-            Gap.h(50),
+            Gap.h(57.w),
             Image.asset(
               'assets/bg/google.png',
-              width: 20,
-              height: 20,
+              width: iconSize,
+              height: iconSize,
             ),
           ],
-        )
+        ),
       ],
     );
   }
