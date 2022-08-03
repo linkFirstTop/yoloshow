@@ -18,8 +18,12 @@ dependencies:
   flutter_svg: ^1.1.1+1
   riverpod: ^1.0.3
   hooks_riverpod: ^1.0.4
-  dd_js_util:
-    path: ../../../ldd/dd_js_util
+  easy_refresh: ^3.0.4
+  avatar_stack: ^1.1.2
+  persistent_bottom_nav_bar:
+    git:
+      url: https://github.com/joehenrique7/PersistentBottomNavBar
+  dd_js_util: any
 
 dev_dependencies:
   flutter_test:

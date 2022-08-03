@@ -52,7 +52,7 @@ class MyApp extends ConsumerWidget {
       supportedLocales: appLocals.values.toList(),
       theme: AppTheme.defaultTheme,
       locale: ref.watch(local),
-      home: const SelectTagPage(),
+      home: LoginView(),
     );
   }
 }

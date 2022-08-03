@@ -10,3 +10,8 @@ class AppTheme {
             labelMedium: TextStyle(fontSize: 16, color: Color(0xff999999)), titleLarge: TextStyle(fontSize: 40, color: Color(0xffFFFFFF))));
   }
 }
+
+
+extension DoubleExt on double {
+
+}
