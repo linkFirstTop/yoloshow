@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart';
 
 ///模拟的虚假数据
 final kMockPost = [
-  ...List.generate(20, (index) => Post(
+  ...List.generate(3, (index) => Post(
       id: '1',
       name: 'Kiera Bernie',
       accountName: '@ldd',

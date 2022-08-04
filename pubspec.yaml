@@ -20,6 +20,7 @@ dependencies:
   hooks_riverpod: ^1.0.4
   easy_refresh: ^3.0.4+1
   avatar_stack: ^1.1.2
+  waterfall_flow: ^3.0.2
   persistent_bottom_nav_bar:
     git:
       url: https://github.com/joehenrique7/PersistentBottomNavBar

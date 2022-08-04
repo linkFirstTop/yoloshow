@@ -5,6 +5,7 @@ import 'package:dd_js_util/ext/context.dart';
 import 'package:dd_js_util/ext/int.dart';
 import 'package:dd_js_util/ext/widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yoloshow/common/string_ext.dart';
 import 'package:yoloshow/pages/index/model/post.dart';
 
@@ -16,8 +17,8 @@ class PostItemLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final settings = RestrictedPositions(
-      maxCoverage: -0.1,
-      minCoverage: -0.5,
+      maxCoverage: 0,
+      minCoverage: 0.3,
       align: StackAlign.left,
     );
     return Container(
@@ -44,31 +45,91 @@ class PostItemLayout extends StatelessWidget {
           Image.network(post.image![0]),
           12.h,
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Container(
-                    width: 100,
-                    height: 22,
-                    alignment: Alignment.centerLeft,
-                    child: WidgetStack(
-
-                      buildInfoWidget: (int surplus) {
-                        return Container(
-                          child: Text('111'),
-                        );
-                      },
-                      positions: settings,
-                      stackedWidgets: [
-                        'p_e_1'.svgAssetsPath.svg.padding(4).bg(Color(0xffFF4BB7)).circleWidget
-                      ],
-                    ),
+                  Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      'p_e_1'.svgAssetsPath.svg.padding(4).bg(const Color(0xffFF4BB7)).circleWidget,
+                      Positioned(
+                        right: -12,
+                        child: 'p_e_2'.svgAssetsPath.svg.padding(4).bg(const Color(0xff4CB1FB)).circleWidget,
+                      ),
+                      Positioned(
+                          right: -24,
+                          child: Image.asset(
+                            'assets/bg/p_e_3.png',
+                            width: 18,
+                            height: 18,
+                          ))
+                    ],
                   ),
+                  30.w,
+                  Text(
+                    '85.4k',
+                    style: TextStyle(fontSize: 10.sp, color: Colors.white),
+                  )
                 ],
-              )
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const PostKeyValueWidget(
+                    value: '530',
+                    title: 'comment',
+                  ),
+                  12.w,
+                  const Text(
+                    '·',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  12.w,
+                  const PostKeyValueWidget(
+                    title: 'shares',
+                    value: '530',
+                  )
+                ],
+              ),
+
             ],
-          ).defaultPadding12
+          ).defaultPadding12,
+          const Divider(
+            color: Color.fromRGBO(255, 255, 255, 0.1),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              'p_e_6'.svgAssetsPath.svg,
+              'p_e_7'.svgAssetsPath.svg,
+              'p_e_8'.svgAssetsPath.svg,
+            ],
+          ),
+          const Divider(
+            color: Color.fromRGBO(255, 255, 255, 0.1),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class PostKeyValueWidget extends StatelessWidget {
+  final String title;
+  final String value;
+
+  const PostKeyValueWidget({Key? key, required this.title, required this.value}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('$value ', style: TextStyle(fontSize: 10.sp, color: Colors.white)),
+          Text(title, style: TextStyle(fontSize: 10.sp, color: Colors.white))
         ],
       ),
     );
