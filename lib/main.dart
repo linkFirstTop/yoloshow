@@ -1,3 +1,4 @@
+import 'package:dd_js_util/plugin/float.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -59,6 +60,9 @@ class MyApp extends ConsumerWidget {
           theme: AppTheme.defaultTheme,
           locale: ref.watch(local),
           home: const LoginView(),
+          builder: (context2,child){
+            return FloatBuild(child: child??const SizedBox());
+          },
         );
       }
     );

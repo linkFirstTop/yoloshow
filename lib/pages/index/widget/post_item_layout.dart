@@ -1,11 +1,12 @@
-import 'package:avatar_stack/avatar_stack.dart';
-import 'package:avatar_stack/positions.dart';
+
 import 'package:dd_js_util/common/circle.dart';
 import 'package:dd_js_util/ext/context.dart';
-import 'package:dd_js_util/ext/int.dart';
+import 'package:dd_js_util/ext/int.dart' hide w;
 import 'package:dd_js_util/ext/widget.dart';
+import 'package:ffloat_nullsafety/ffloat_nullsafety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yoloshow/common/int_ext.dart';
 import 'package:yoloshow/common/string_ext.dart';
 import 'package:yoloshow/pages/index/model/post.dart';
 
@@ -16,11 +17,6 @@ class PostItemLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settings = RestrictedPositions(
-      maxCoverage: 0,
-      minCoverage: 0.3,
-      align: StackAlign.left,
-    );
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       child: Column(
@@ -102,7 +98,7 @@ class PostItemLayout extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              'p_e_6'.svgAssetsPath.svg,
+              const Zan(),
               'p_e_7'.svgAssetsPath.svg,
               'p_e_8'.svgAssetsPath.svg,
             ],
@@ -116,6 +112,45 @@ class PostItemLayout extends StatelessWidget {
   }
 }
 
+///点赞的小图标
+class Zan extends StatelessWidget {
+  const Zan({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FFloat((setter, contentState) => Container(
+      padding: EdgeInsets.symmetric(horizontal: 8.www,vertical: 8.hhh),
+      decoration: BoxDecoration(
+        color: const Color(0xff2F232E),
+        borderRadius: BorderRadius.circular(10.sp)
+      ),
+      child: Row(children: const [
+        PostImages(filename: 'img_7',),
+        PostImages(filename: 'img_1',),
+        PostImages(filename: 'img_2',),
+        PostImages(filename: 'img_3',),
+        PostImages(filename: 'img_4',),
+        PostImages(filename: 'img_5',),
+        PostImages(filename: 'img_6',),
+      ],),
+    ),anchor: 'p_e_6'.svgAssetsPath.svg,alignment:FFloatAlignment.topLeft,hideTriangle: true,);
+  }
+}
+
+///点赞小表情
+class PostImages extends StatelessWidget {
+  final String filename;
+  const PostImages({Key? key,required this.filename}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset('assets/bg/bq/$filename.png',width: 41.www,height: 41.www,).mr(8.www);
+  }
+}
+
+
+
+
 class PostKeyValueWidget extends StatelessWidget {
   final String title;
   final String value;
@@ -125,6 +160,7 @@ class PostKeyValueWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
