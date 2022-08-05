@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "login": "Log in / Sing up ",
+  "login": "Log in / Sign up ",
   "@login": {
     "description": "login button"
   },
