@@ -5,6 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:waterfall_flow/waterfall_flow.dart';
 import 'package:yoloshow/common/string_ext.dart';
 
+import '../../../wigdet/follow_btn.dart';
+
 @Doc(message: '首页建议')
 class IndexSuggesionWidget extends StatelessWidget {
   const IndexSuggesionWidget({Key? key}) : super(key: key);
@@ -33,7 +35,7 @@ class IndexSuggesionWidget extends StatelessWidget {
               'right'.svgAssetsPath.svg
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
           WaterfallFlow.count(
@@ -105,12 +107,9 @@ class ItemCard extends StatelessWidget {
                       ],
                     ),
                   )),
-                  ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.white),
-                          shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(6.sp)))),
-                      onPressed: () {},
-                      child: const Text('Follow')),
+                  FollowButton(
+                    onTap: () {},
+                  ),
                   SizedBox(
                     width: 12.w,
                   )

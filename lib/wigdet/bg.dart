@@ -2,6 +2,18 @@ import 'package:dd_js_util/common/circle.dart';
 import 'package:dd_js_util/ext/context.dart';
 import 'package:flutter/material.dart';
 
+
+extension BgExt on Widget {
+  Widget get backgroundImageWrap => Stack(
+    children: [
+      kDefaultBackgroundWidget,
+      this
+    ],
+  );
+}
+
+Widget get kDefaultBackgroundWidget => const Bg(bg: 'tag_bg');
+
 class Bg extends StatelessWidget {
   final String bg;
 

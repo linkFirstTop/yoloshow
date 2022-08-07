@@ -6,9 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:yoloshow/common/theme.dart';
 import 'package:yoloshow/pages/login/view.dart';
-import 'package:yoloshow/pages/tag/view.dart';
-
-import 'pages/home.dart';
 
 enum LocalEnum {
   //英文

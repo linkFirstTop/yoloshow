@@ -10,6 +10,7 @@ import 'widget/appbar.dart';
 import 'widget/suggestion.dart';
 import 'widget/user_avatars.dart';
 
+///首页
 class IndexPage extends StatelessWidget {
   const IndexPage({Key? key}) : super(key: key);
 
@@ -17,25 +18,20 @@ class IndexPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: Stack(
-        children: [
-          const Bg(bg: 'tag_bg'),
-          EasyRefresh.builder(childBuilder: (c, p) {
-            return CustomScrollView(
-              slivers: [
-                const IndexPageAppbar(),
-                const UserAvatars().toSliverWidget,
-                const Divider(
-                  color: Colors.white10,
-                ).toSliverWidget,
-                PostListWidget(posts: kMockPost),
-                const IndexSuggesionWidget().toSliverWidget,
-                SizedBox(height: 86.h,).toSliverWidget
-              ],
-            );
-          })
-        ],
-      ),
-    );
+      body: EasyRefresh.builder(childBuilder: (c, p) {
+        return CustomScrollView(
+          slivers: [
+            const IndexPageAppbar(),
+            const UserAvatars().toSliverWidget,
+            const Divider(
+              color: Colors.white10,
+            ).toSliverWidget,
+            PostListWidget(posts: kMockPost),
+            const IndexSuggesionWidget().toSliverWidget,
+            SizedBox(height: 86.h,).toSliverWidget
+          ],
+        );
+      }),
+    ).backgroundImageWrap;
   }
 }
