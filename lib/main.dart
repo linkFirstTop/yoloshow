@@ -1,7 +1,9 @@
+import 'package:dd_js_util/api/base.dart';
 import 'package:dd_js_util/plugin/float.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:yoloshow/common/theme.dart';
@@ -31,6 +33,7 @@ final local = StateProvider<Locale>((ref) => appLocals[LocalEnum.en]!);
 ///main函数启动
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  BaseApi.host = 'http://apiyolo.8ijgd5.space/';
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -40,28 +43,27 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ScreenUtilInit(
-      designSize: const Size(390, 860),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (context,child) {
-        return MaterialApp(
-          title: 'YoloShow',
-          debugShowCheckedModeBanner: false,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: appLocals.values.toList(),
-          theme: AppTheme.defaultTheme,
-          locale: ref.watch(local),
-          home: const LoginView(),
-          builder: (context2,child){
-            return FloatBuild(child: child??const SizedBox());
-          },
-        );
-      }
-    );
+        designSize: const Size(390, 860),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp(
+            title: 'YoloShow',
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: appLocals.values.toList(),
+            theme: AppTheme.defaultTheme,
+            locale: ref.watch(local),
+            home: const LoginView(),
+            builder: FlutterSmartDialog.init(builder: (a, b) {
+              return FloatBuild(child: b ?? const SizedBox());
+            }),
+          );
+        });
   }
 }

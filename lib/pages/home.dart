@@ -7,11 +7,10 @@ import 'package:yoloshow/common/string_ext.dart';
 import 'package:yoloshow/pages/index/index.dart';
 import 'package:yoloshow/pages/message/index.dart';
 import 'package:yoloshow/pages/notice/index.dart';
-import 'package:yoloshow/pages/tag/view.dart';
 import 'package:yoloshow/pages/user/index.dart';
 import 'package:yoloshow/pages/write/index.dart';
 
-import 'login/view.dart';
+final homeIndex = StateProvider((ref) => 0);
 
 ///首页
 class HomePage extends ConsumerStatefulWidget {
@@ -24,9 +23,7 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class HomePageState extends ConsumerState {
-  final PersistentTabController _controller = PersistentTabController(
-    initialIndex: 0
-  );
+  final PersistentTabController _controller = PersistentTabController(initialIndex: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -37,15 +34,13 @@ class HomePageState extends ConsumerState {
       items: _navBarsItems(),
       confineInSafeArea: true,
       backgroundColor: Colors.black,
-      // Default is Colors.white.
       handleAndroidBackButtonPress: true,
-      // Default is true.
       resizeToAvoidBottomInset: true,
-      // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
       stateManagement: true,
-      // Default is true.
       hideNavigationBarWhenKeyboardShows: true,
-      // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+      onItemSelected: (i) {
+        ref.read(homeIndex.notifier).state = i;
+      },
       decoration: NavBarDecoration(
         borderRadius: BorderRadius.circular(10.0),
         colorBehindNavBar: Colors.white,
@@ -67,48 +62,46 @@ class HomePageState extends ConsumerState {
   }
 
   List<Widget> _buildScreens() {
-    return [const IndexPage(), const NoticePage(), const WritePostPage(), const MessagePage(), const UserPage()];
+    return [const IndexPage(), const MessagePage(), const WritePostPage(), const NoticePage(), const UserPage()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: 'home'.svgAssetsPath.svg,
+        icon: (ref.watch(homeIndex) == 0 ? 'home' : 'home_un').svgAssetsPath.svg,
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: 'nitice'.svgAssetsPath.svgWithColor(Colors.white54),
+        icon: 'nitice${ref.watch(homeIndex) == 1 ? '_un' : ''}'.svgAssetsPath.svg,
         activeColorPrimary: Colors.white,
         inactiveColorPrimary: Colors.white54,
       ),
       PersistentBottomNavBarItem(
-        contentPadding: 0,
-        icon: Container(
-          width: 44,
-          height: 44,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            gradient: const LinearGradient(colors: [
-              Color(0xffEC2A83),
-              Color(0xff871CF4)
-            ],begin: Alignment.centerLeft,end: Alignment.centerRight)
-          ),
-          child: 'plus'.svgAssetsPath.svgWithColor(Colors.white).sizeBox(12, 12),
-        ).constraintBox((size, child) {
-          print(size);
-          return child;
-        }),
-        activeColorPrimary: Colors.transparent
-      ),
+          contentPadding: 0,
+          icon: Container(
+            width: 44,
+            height: 44,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                gradient:
+                    const LinearGradient(colors: [Color(0xffEC2A83), Color(0xff871CF4)], begin: Alignment.centerLeft, end: Alignment.centerRight)),
+            child: 'plus'.svgAssetsPath.svgWithColor(Colors.white).sizeBox(12, 12),
+          ).constraintBox((size, child) {
+            print(size);
+            return child;
+          }),
+          activeColorPrimary: Colors.transparent),
       PersistentBottomNavBarItem(
-        icon: 'msg'.svgAssetsPath.svgWithColor(Colors.white54),
+        icon: 'msg'.svgAssetsPath.svg,
         activeColorPrimary: Colors.white,
         inactiveColorPrimary: Colors.white54,
       ),
       PersistentBottomNavBarItem(
-        icon: 'u'.svgAssetsPath.svg,
+        icon: ref.watch(homeIndex) == 4 ? Container(
+          child: Image.network('https://img.itbug.shop/public%2F2022-08-0710%3A36%3A01%2FTL1cWY.jpg').circleWidget,
+        ) : 'u'.svgAssetsPath.svg,
         activeColorPrimary: Colors.white,
         inactiveColorPrimary: Colors.white54,
       ),

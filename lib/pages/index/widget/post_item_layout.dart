@@ -159,19 +159,15 @@ class PostKeyValueWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text('$value ', style: TextStyle(fontSize: 10.sp, color: Colors.white)),
-          Text(title, style: TextStyle(fontSize: 10.sp, color: Colors.white))
-        ],
-      ),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text('$value ', style: TextStyle(fontSize: 10.sp, color: Colors.white)),
+        Text(title, style: TextStyle(fontSize: 10.sp, color: Colors.white))
+      ],
     );
   }
 }
-
 class PostItemUserHeader extends StatelessWidget {
   final Post post;
 
@@ -224,7 +220,7 @@ class PostItemUserHeader extends StatelessWidget {
                         4.w,
                         Text(
                           post.location,
-                          style: const TextStyle(color: const Color(0xffCCCCCC)),
+                          style: const TextStyle(color: Color(0xffCCCCCC)),
                         )
                       ],
                     )

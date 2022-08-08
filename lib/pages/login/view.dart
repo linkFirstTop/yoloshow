@@ -1,9 +1,12 @@
 import 'package:dd_js_util/common/circle.dart';
 import 'package:dd_js_util/ext/context.dart';
+import 'package:dd_js_util/ext/navigator.dart';
 import 'package:dd_js_util/ext/widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:yoloshow/api/login.dart';
+import 'package:yoloshow/protofile/v1_member/v1_member.pbserver.dart';
 import 'package:yoloshow/tools/constant.dart';
 import 'package:yoloshow/tools/expand_util.dart';
 import 'package:yoloshow/wigdet/bg.dart';
@@ -12,8 +15,25 @@ import '../../wigdet/h_btn.dart';
 import '../tag/view.dart';
 
 ///登录页面
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
+
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+
+
+  final TextEditingController _userNameCtrl = TextEditingController();
+  final TextEditingController _passwordCtrl = TextEditingController();
+
+  Future<void> _login() async {
+    final nav = context.nav;
+    final resp = await LoginApi(LoginRpcRequest(username: _userNameCtrl.text,password: _passwordCtrl.text)).request();
+    debugPrint('服务端返回数据:${resp.toString()}');
+    nav.navToWidget(to: const SelectTagPage());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +72,10 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  Widget _buildTextFile(String hintText) {
+  Widget _buildTextFile(String hintText,TextEditingController controller) {
     return TextField(
       style: const TextStyle(color: Colors.white),
+      controller: controller,
       decoration: InputDecoration(
           border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(100)),
           fillColor: const Color.fromRGBO(255, 255, 255, 0.2),
@@ -71,9 +92,9 @@ class LoginView extends StatelessWidget {
       bottom: 44.6.h,
       child: Column(
         children: [
-          _buildTextFile(context.l10n.username).marginOnly(left: 44.w, right: 44.w),
+          _buildTextFile(context.l10n.username,_userNameCtrl).marginOnly(left: 44.w, right: 44.w),
           Gap.v(18.h),
-          _buildTextFile(context.l10n.password).marginOnly(left: 44.w, right: 44.w),
+          _buildTextFile(context.l10n.password,_passwordCtrl).marginOnly(left: 44.w, right: 44.w),
           Gap.v(51.h),
           _buildActions(context),
           Gap.v(16.h),
@@ -112,7 +133,10 @@ class LoginView extends StatelessWidget {
           style: const TextStyle(color: Colors.white),
         )
       ],
-      onTap: () => context.navToWidget(to: const SelectTagPage()),
+      onTap: () {
+        _login();
+
+      },
     ).width(double.infinity);
   }
 
