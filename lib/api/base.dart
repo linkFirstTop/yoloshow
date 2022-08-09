@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:dd_js_util/api/base.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:logger/logger.dart';
 import 'package:protobuf/protobuf.dart';
 

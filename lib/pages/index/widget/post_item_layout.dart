@@ -162,8 +162,8 @@ class PostKeyValueWidget extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text('$value ', style: TextStyle(fontSize: 10.sp, color: Colors.white)),
-        Text(title, style: TextStyle(fontSize: 10.sp, color: Colors.white))
+        Text('$value ', style: TextStyle(fontSize: 12.sp, color: Colors.white)),
+        Text(title, style: TextStyle(fontSize: 12.sp, color: Colors.white))
       ],
     );
   }
