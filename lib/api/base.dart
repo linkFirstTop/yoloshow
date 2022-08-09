@@ -2,9 +2,11 @@ import 'dart:typed_data';
 
 import 'package:dd_js_util/api/base.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:logger/logger.dart';
 import 'package:protobuf/protobuf.dart';
 
-abstract class MyBaseApi<T extends GeneratedMessage> extends BaseApi {
+abstract class MyBaseApi<R extends GeneratedMessage, T extends GeneratedMessage> extends BaseApi {
   final String apiUrl;
 
   MyBaseApi(this.apiUrl) : super(apiUrl, httpMethod: HttpMethod.probuf);
@@ -16,18 +18,25 @@ abstract class MyBaseApi<T extends GeneratedMessage> extends BaseApi {
       String contentType = "",
       Map<String, dynamic>? headers,
       bool showDefaultLoading = true,
-      Map<String, dynamic>? data,
-      ResponseType? responseType}) async {
+      dynamic? data,
+      ResponseType? responseType,
+      bool? nullParams,
+      RequestEncoder? requestEncoder}) async {
     final response = await super.request(
         showErrorMsg: showErrorMsg,
         loadingText: loadingText,
         contentType: contentType,
+        data: Stream.fromIterable([covertRequest.writeToBuffer()]),
         headers: headers,
         showDefaultLoading: showDefaultLoading,
-        responseType: ResponseType.bytes);
-    return covertData(response as Uint8List);
+        responseType: ResponseType.bytes,
+        nullParams: true);
+    final r = covertData(response as Uint8List);
+    Logger().wtf(r.toString());
+    return r;
   }
 
   T covertData(List<int> data);
 
+  R get covertRequest;
 }
