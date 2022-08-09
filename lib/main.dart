@@ -33,7 +33,7 @@ final local = StateProvider<Locale>((ref) => appLocals[LocalEnum.en]!);
 ///main函数启动
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  BaseApi.host = 'http://apiyolo.8ijgd5.space/';
+  BaseApi.host = 'https://apiyolo.8ijgd5.space/';
   runApp(const ProviderScope(child: MyApp()));
 }
 

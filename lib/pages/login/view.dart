@@ -28,6 +28,7 @@ class _LoginViewState extends State<LoginView> {
   final TextEditingController _userNameCtrl = TextEditingController(text: 'vic@gmail.com');
   final TextEditingController _passwordCtrl = TextEditingController(text: 'mypwd');
 
+
   Future<void> _login() async {
     final nav = context.nav;
     final resp = await LoginApi(LoginRpcRequest(username: _userNameCtrl.text,password: _passwordCtrl.text)).request();

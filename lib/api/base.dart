@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dd_js_util/api/base.dart';
@@ -20,7 +21,7 @@ abstract class MyBaseApi<R extends GeneratedMessage, T extends GeneratedMessage>
       dynamic? data,
       ResponseType? responseType,
       bool? nullParams,
-      RequestEncoder? requestEncoder}) async {
+      RequestEncoder? requestEncoder,DioStart? dioStart}) async {
     final response = await super.request(
         showErrorMsg: showErrorMsg,
         loadingText: loadingText,
@@ -29,7 +30,9 @@ abstract class MyBaseApi<R extends GeneratedMessage, T extends GeneratedMessage>
         headers: headers,
         showDefaultLoading: showDefaultLoading,
         responseType: ResponseType.bytes,
-        nullParams: true);
+        nullParams: true,dioStart: (dio){
+
+    });
     final r = covertData(response as Uint8List);
     Logger().wtf(r.toString());
     return r;
