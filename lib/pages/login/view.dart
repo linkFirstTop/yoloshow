@@ -33,7 +33,7 @@ class _LoginViewState extends State<LoginView> {
   Future<void> _login() async {
     final nav = context.nav;
     final resp = await LoginApi(LoginRpcRequest(username: _userNameCtrl.text,password: _passwordCtrl.text)).request();
-    if(resp.error.status == 0) {
+    if(resp.error.status == 1) {
       nav.navToWidget(to: const SelectTagPage());
     }else{
       toast(resp.error.msg);
