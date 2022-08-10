@@ -1,3 +1,4 @@
+import 'package:dd_js_util/api/base.dart';
 import 'package:dd_js_util/common/circle.dart';
 import 'package:dd_js_util/ext/context.dart';
 import 'package:dd_js_util/ext/navigator.dart';
@@ -32,7 +33,12 @@ class _LoginViewState extends State<LoginView> {
   Future<void> _login() async {
     final nav = context.nav;
     final resp = await LoginApi(LoginRpcRequest(username: _userNameCtrl.text,password: _passwordCtrl.text)).request();
-    nav.navToWidget(to: const SelectTagPage());
+    if(resp.error.status == 0) {
+      nav.navToWidget(to: const SelectTagPage());
+    }else{
+      toast(resp.error.msg);
+    }
+
   }
 
   @override
